@@ -6,6 +6,7 @@ import Home from './Screens/Home';
 import About from './Screens/About';
 import Contact from './Screens/Contact';
 import Gallery from './Screens/Gallery';
+import User from './Screens/User';
 
 function App() {
   return (
@@ -17,10 +18,10 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/gallery' element={<Gallery />} /> 
+        <Route path='/user' element={<User />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-  

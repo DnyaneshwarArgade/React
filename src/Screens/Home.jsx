@@ -20,6 +20,9 @@ function Home() {
                         <li>
                             <Link to="/gallery" className='text-white text-decoration-none'>Gallery</Link>
                         </li>
+                        <li>
+                            <Link to= "/user"  className='text-white text-decoration-none' >User</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
