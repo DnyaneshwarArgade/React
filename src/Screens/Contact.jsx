@@ -13,7 +13,7 @@ export default function Contact() {
   }
   return (
     <div>
-      <h4>This is Odd Number...................</h4>
+      <h4>This is Odd Number....</h4>
         <ul>
           {oddnumber.map((num, index) => (
             <li key={index}> {num} </li>

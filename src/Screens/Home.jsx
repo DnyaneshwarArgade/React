@@ -23,6 +23,9 @@ function Home() {
                         <li>
                             <Link to= "/user"  className='text-white text-decoration-none' >User</Link>
                         </li>
+                         <li>
+                            <Link to= "/fetchapi"  className='text-white text-decoration-none' >Fetch-API</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
