@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function FetchAPI() {
-  const [get, setget] = useState([]);
+    const [data, setData] = useState([]);
+    const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(get => setget(get))
-      .catch(errorrr => console.log("API error", errorrr));
-  }, []);
+    const xyz = async () => {
+        try {
+            const resp = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const data = await resp.json();
+            console.log(data);
+            setData(data);
+        } catch (error) {
+            console.log("Error...", error);
+        }
+    };
 
-  return (
-    <div className="container mt-4">
-      <h3>This API Page</h3>
-      <table className='table table-bordered'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>User ID</th>
-            <th>Title</th>
-            <th>Body</th>
-          </tr>
-        </thead>
-        <tbody>
-          {get.map(data => (
-            <tr key={data.id}>
-              <td>{data.id}</td>
-              <td>{data.userId}</td>
-              <td>{data.title}</td>
-              <td>{data.body}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    useEffect(() => {
+        xyz();
+    }, []);
+
+    // Filter logic (corrected spelling of 'includes')
+    const filteredData = data.filter(item =>
+        item.id.toString().includes(search)
+    );
+
+    return (
+        <div style={{ padding: '20px' }}>
+            <input
+                type='number'
+                placeholder='Enter search ID...'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ padding: '10px', width: '250px', marginBottom: '20px' }}
+            />
+
+            <ul>
+                {filteredData.map(user => (
+                    <li key={user.id}>{user.title}</li>
+                ))}
+            </ul>
+        </div>
+    );
 }
 
 export default FetchAPI;
