@@ -10,6 +10,8 @@ import User from './Screens/User';
 import FetchAPI from './Screens/FetchAPI';
 import Postspage from './Screens/Postspage'
 import Create from './Screens/Create'
+import DataDelete from './Screens/DataDelete';
+import Updata from './Screens/Updata';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path='/fetchapi' element={ <FetchAPI/> } />
         <Route path='Postspage' element={ <Postspage /> } />
         <Route path='/Create' element={ <Create/> } />
+        <Route path='/DataDelete' element={< DataDelete/>} />
+        <Route path='/Updata' element={ <Updata/> } />
       </Routes>
     </Router>
     

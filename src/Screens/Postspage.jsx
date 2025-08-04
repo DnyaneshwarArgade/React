@@ -6,7 +6,7 @@ function PostForm() {
   const [responseData, setResponseData] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // form reload होऊ देत नाही
+    e.preventDefault(); 
 
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts', {

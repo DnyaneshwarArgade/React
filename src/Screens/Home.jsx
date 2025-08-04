@@ -32,6 +32,12 @@ function Home() {
                         <li>
                             <Link to= "/Create"  className='text-white text-decoration-none' >Create</Link>
                         </li>
+                         <li>
+                            <Link to= "/DataDelete"  className='text-white text-decoration-none' >Delete Record</Link>
+                        </li>
+                         <li>
+                            <Link to= "/Updata"  className='text-white text-decoration-none' >Update Record</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
