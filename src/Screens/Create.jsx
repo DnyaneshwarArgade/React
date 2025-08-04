@@ -1,38 +1,47 @@
-import { error } from 'jquery';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 function Create() {
 
-  const [data, setData] = useState([]);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error("api error"), error)
-  }, [])
+  const handlesubmit = async (e) =>{
+    e.preventDefault();
+
+    const data = {
+      title,
+      body,
+    }
+
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts', 
+      {
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(data)
+      }
+    )
+     const result = await response.json();
+     console.log(result);
+     alert("Post Created.....!!");
+
+     setTitle('');
+     setBody('');
+    } catch (error) {
+      console.error(error);
+      alert("error post crested");
+    }
+  }
 
   return (
     <div>
-
-      <table border="1">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>body</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.title}</td>
-              <td>{user.body}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <form onSubmit={handlesubmit}>
+        <input type="text" placeholder='title' value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input type="text" placeholder='title' value={body} onChange={(e) => setBody(e.target.value)} />
+       <button type='submit'>submit</button>
+      </form>
     </div>
   )
 }
