@@ -26,6 +26,12 @@ function Home() {
                          <li>
                             <Link to= "/fetchapi"  className='text-white text-decoration-none' >Fetch-API</Link>
                         </li>
+                        <li>
+                            <Link to= "/Postspage"  className='text-white text-decoration-none' >Postspage</Link>
+                        </li>
+                        <li>
+                            <Link to= "/Create"  className='text-white text-decoration-none' >Create</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -8,6 +8,8 @@ import Contact from './Screens/Contact';
 import Gallery from './Screens/Gallery';
 import User from './Screens/User';
 import FetchAPI from './Screens/FetchAPI';
+import Postspage from './Screens/Postspage'
+import Create from './Screens/Create'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path='/gallery' element={<Gallery />} /> 
         <Route path='/user' element={<User />} />
         <Route path='/fetchapi' element={ <FetchAPI/> } />
+        <Route path='Postspage' element={ <Postspage /> } />
+        <Route path='/Create' element={ <Create/> } />
       </Routes>
     </Router>
     
