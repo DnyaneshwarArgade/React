@@ -24,7 +24,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/gallery' element={<Gallery />} /> 
         <Route path='/user' element={<User />} />
-        <Route path='/fetchapi' element={ <FetchAPI/> } />
+        <Route path='/FetchAPI' element={ <FetchAPI/> } />
         <Route path='Postspage' element={ <Postspage /> } />
         <Route path='/Create' element={ <Create/> } />
         <Route path='/DataDelete' element={< DataDelete/>} />

@@ -2,87 +2,66 @@ import React, { useEffect, useState } from 'react';
 
 function UpdateExample() {
   const [posts, setPosts] = useState([]);
-  const [editPost, setEditPost] = useState(null);
+  const [edit, setEdit] = useState(null);
   const [form, setForm] = useState({ title: '', body: '' });
 
-  // Fetch all posts
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=10') // Only 10 posts
+    fetch('https://jsonplaceholder.typicode.com/posts')
       .then(res => res.json())
-      .then(data => setPosts(data))
-      .catch(err => console.error('Error:', err));
+      .then(setPosts);
   }, []);
 
-  // Set form for editing
-  const onEdit = (post) => {
-    setEditPost(post);
-    setForm({ title: post.title, body: post.body });
-  };
-
-  // Handle input change
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Update post (mock only)
-  const onUpdate = async () => {
-    if (!editPost) return;
+  const handleEdit = (post) => {
+    setEdit(post);
+    setForm({ title: post.title, body: post.body });
+  };
 
-    const updated = {
-      ...editPost,
-      ...form
-    };
+  const handleUpdate = async () => {
+    if (!edit) return;
 
-    await fetch(`https://jsonplaceholder.typicode.com/posts/${editPost.id}`, {
+    const updatedPost = { ...edit, ...form };
+
+    await fetch(`https://jsonplaceholder.typicode.com/posts/${edit.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updated),
+      body: JSON.stringify(updatedPost),
     });
 
-    // Update in UI (mock)
-    setPosts(posts.map(p => p.id === editPost.id ? updated : p));
-    setEditPost(null);
+    setPosts(posts.map(p => (p.id === edit.id ? updatedPost : p)));
+    setEdit(null);
     setForm({ title: '', body: '' });
+    alert('Post updated!');
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: 20 }}>
       <h2>Update Posts</h2>
-
-      <table border="1" cellPadding="8">
+      <table border="1" cellPadding="6">
         <thead>
-          <tr>
-            <th>ID</th><th>Title</th><th>Body</th><th>Action</th>
-          </tr>
+          <tr><th>ID</th><th>Title</th><th>Body</th><th>Edit</th></tr>
         </thead>
         <tbody>
-          {posts.map(post => (
-            <tr key={post.id}>
-              <td>{post.id}</td>
-              <td>{post.title}</td>
-              <td>{post.body}</td>
-              <td><button onClick={() => onEdit(post)}>Edit</button></td>
+          {posts.map(p => (
+            <tr key={p.id}>
+              <td>{p.id}</td>
+              <td>{p.title}</td>
+              <td>{p.body}</td>
+              <td><button onClick={() => handleEdit(p)}>Edit</button></td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {editPost && (
+      {edit && (
         <div style={{ marginTop: 20 }}>
-          <h3>Editing Post ID: {editPost.id}</h3>
-          <input
-            name="title"
-            value={form.title}
-            onChange={onChange}
-            placeholder="Title"
-          /><br /><br />
-          <input
-            name="body"
-            value={form.body}
-            onChange={onChange}
-            placeholder="Body"
-          /><br /><br />
-          <button onClick={onUpdate}>Update</button>
+          <h3>Edit Post ID: {edit.id}</h3>
+          <input name="title" value={form.title} onChange={handleChange} placeholder="Title" /><br /><br />
+          <input name="body" value={form.body} onChange={handleChange} placeholder="Body" /><br /><br />
+          <button onClick={handleUpdate}>Update</button>
         </div>
       )}
     </div>
