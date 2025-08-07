@@ -1,49 +1,55 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate();
+
+      const create = () => {
+          navigate('/Create');
+      };
+
+      const fetch = () => {
+         navigate('/FetchAPI');
+      };
+
+      const deletee = () => {
+        navigate('/DataDelete');
+      };
+
+      const updatee = () => {
+         navigate('/Updata');
+      };
+
+
+
+
     return (
         <div className='container-fluid'>
             <div className='row'>
-                <div className='col-12 bg-danger p-3'>
-                    <ul className='navbar list-unstyled d-flex gap-4 m-0'>
-                        <li>
-                            <Link to="/" className='text-white text-decoration-none'>Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about" className='text-white text-decoration-none'>About</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact" className='text-white text-decoration-none'>Contact</Link>
-                        </li>
-                        <li>
-                            <Link to="/gallery" className='text-white text-decoration-none'>Gallery</Link>
-                        </li>
-                        <li>
-                            <Link to="/user" className='text-white text-decoration-none' >User</Link>
-                        </li>
-                        <li>
-                            <Link to="/FetchAPI" className='text-white text-decoration-none' >Fetch-API</Link>
-                        </li>
-                        <li>
-                            <Link to="/Postspage" className='text-white text-decoration-none' >Postspage</Link>
-                        </li>
-                        <li>
-                            <Link to="/Create" className='text-white text-decoration-none' >Create</Link>
-                        </li>
-                        <li>
-                            <Link to="/DataDelete" className='text-white text-decoration-none' >Delete Record</Link>
-                        </li>
-                        <li>
-                            <Link to="/Updata" className='text-white text-decoration-none' >Update Record</Link>
-                        </li>
-                    </ul>
+                <div className='col-12 p-0'>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" onClick={create} aria-current="page">Create</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link active" onClick={fetch} aria-current="page">Fetch</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link active" onClick={updatee} aria-current="page">Update</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link active" onClick={deletee} aria-current="page">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        
-    );
+    )
 }
-
 export default Home;
