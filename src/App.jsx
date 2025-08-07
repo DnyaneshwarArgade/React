@@ -12,10 +12,10 @@ function App() {
   return (
     
      <BrowserRouter>
-     <Home />
+     {/* <Home /> */}
       <Routes>
           <Route path='/' element={<Login/>} />
-          {/* <Route path='/Home' element={<Home/>} /> */}
+          <Route path='/Home' element={<Home/>} />
           <Route path='/Create' element={<Create/>} />
           <Route path='/FetchAPI' element={<FetchAPI/>} />
           <Route path='/DataDelete' element={<DataDelete />} />
